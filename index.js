@@ -22,6 +22,8 @@ app.get('/api/teachers', (req, res) => {
   const teachers = [
       { id: 1, name: 'Mr. Brown', subject: 'Math' },
       { id: 2, name: 'Ms. Green', subject: 'Science' },
+      { id: 3, name: 'Ms. Green2', subject: 'Science4' },
+      { id: 4, name: 'Ms. Green3', subject: 'Science45' },
   ];
 
   res.json(teachers);
@@ -38,17 +40,7 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
 
-// connecting mongodb
-//mongoose
- // .connect("mongodb://127.0.0.1:27017/user-app")
-//  .connect("mongodb+srv://105255tata:105255tata@atlascluster.zduxqe4.mongodb.net/?retryWrites=true&w=majority&appName=AtlasCluster")
- 
-//   .then(() => {
-//     console.log("DB Connected!");
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+
 
 
 const mongoUri = process.env.MONGO_URI;
