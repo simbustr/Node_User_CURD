@@ -5,6 +5,7 @@ const dotenv = require('dotenv');
 
 
 const studentRoute = require("./routes/student");
+const productRoute = require("./routes/product"); 
 
 dotenv.config(); 
 
@@ -33,6 +34,7 @@ app.get('/api/teachers', (req, res) => {
 
 
 app.use("/simbu", studentRoute);
+app.use("/api", productRoute); 
 
 //port
 const port =process.env.X_ZOHO_CATALYST_LISTEN_PORT || 8000;
