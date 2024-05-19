@@ -9,6 +9,24 @@ const getAllTodos = async (req, res) => {
   }
 };
 
+
+
+const getTodoById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const todo = await Todo.findById(id);
+    if (todo) {
+      res.json(todo);
+    } else {
+      res.status(404).json({ message: 'To-do item not found' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
+  }
+};
+
+
+
 const createTodo = async (req, res) => {
   const { title, description } = req.body;
 
@@ -23,6 +41,27 @@ const createTodo = async (req, res) => {
     res.status(400).json({ message: "Bad Request" });
   }
 };
+
+
+
+
+const updateTodo = async (req, res) => {
+  const { id } = req.params;
+  const updateData = req.body;
+  try {
+    const updatedTodo = await Todo.findByIdAndUpdate(id, updateData, { new: true });
+    if (updatedTodo) {
+      res.json(updatedTodo);
+    } else {
+      res.status(404).json({ message: 'To-do item not found' });
+    }
+  } catch (error) {
+    res.status(400).json({ message: 'Bad request' });
+  }
+};
+
+
+
 
 const deleteTodo = async (req, res) => {
   
@@ -42,6 +81,8 @@ const deleteTodo = async (req, res) => {
 
 module.exports = {
     getAllTodos,
+    getTodoById,
   createTodo,
+  updateTodo,
   deleteTodo
 };
