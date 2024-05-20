@@ -14,21 +14,48 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Create a new user
-const createUser = async (req, res) => {
-  try {
-    const userData = {
-      ...req.body,
-      profileImage: req.files.profileImage ? req.files.profileImage[0].path : null,
-      cv: req.files.cv ? req.files.cv[0].path : null,
-    };
+// const createUser = async (req, res) => {
+//   try {
+//     const userData = {
+//       ...req.body,
+//       profileImage: req.files.profileImage ? req.files.profileImage[0].path : null,
+//       cv: req.files.cv ? req.files.cv[0].path : null,
+//     };
 
-    const user = new User(userData);
-    await user.save();
-    res.status(201).json(user);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
+//     const user = new User(userData);
+//     await user.save();
+//     res.status(201).json(user);
+//   } catch (error) {
+//     res.status(400).json({ message: error.message });
+//   }
+// };
+
+
+const createUser = async (req, res) => {
+    try {
+      const profileImagePath = req.files.profileImage
+        ? `https://github.com/simbustr/Node_User_CURD/blob/main/${req.files.profileImage[0].path.replace(/\\/g, '/')}`
+        : null;
+  
+      const cvPath = req.files.cv
+        ? `https://github.com/simbustr/Node_User_CURD/blob/main/${req.files.cv[0].path.replace(/\\/g, '/')}`
+        : null;
+  
+      const userData = {
+        ...req.body,
+        profileImage: profileImagePath,
+        cv: cvPath,
+      };
+  
+      const user = new User(userData);
+      await user.save();
+      res.status(201).json(user);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+    }
+  };
+
+
 
 
 
