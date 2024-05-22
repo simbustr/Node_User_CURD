@@ -15,10 +15,10 @@ const storage = multer.diskStorage({
   });
   const upload = multer({ storage });
 
-  router.post('/users', upload.fields([{ name: 'profileImage', maxCount: 1 }, { name: 'cv', maxCount: 1 }]), userController.createUser);
+//  router.post('/users', upload.fields([{ name: 'profileImage', maxCount: 1 }, { name: 'cv', maxCount: 1 }]), userController.createUser);
 
-//router.post('/users', userController.upload.single('profileImage'), userController.createUser);
-
+// router.post('/users', userController.upload.single('profileImage'), userController.createUser);
+router.post('/users', userController.createUser);
 
 router.get('/users', userController.getAllUsers);
 router.delete('/users/:id', userController.deleteUser); 
