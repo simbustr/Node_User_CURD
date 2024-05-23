@@ -33,9 +33,9 @@ const upload = multer({ storage });
 
 const createUser = async (req, res) => {
     try {
-      // const profileImagePath = req.files.profileImage
-      //   ? `https://github.com/simbustr/Node_User_CURD/blob/main/${req.files.profileImage[0].path.replace(/\\/g, '/')}`
-      //   : null;
+      const profileImagePath = req.files.profileImage
+        ? `https://github.com/simbustr/Node_User_CURD/blob/main/${req.files.profileImage[0].path.replace(/\\/g, '/')}`
+        : null;
   
       // const cvPath = req.files.cv
       //   ? `https://github.com/simbustr/Node_User_CURD/blob/main/${req.files.cv[0].path.replace(/\\/g, '/')}`
@@ -43,7 +43,7 @@ const createUser = async (req, res) => {
   
       const userData = {
         ...req.body,
-        // profileImage: profileImagePath,
+         profileImage: profileImagePath,
         // cv: cvPath,
       };
   
